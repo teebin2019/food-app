@@ -74,13 +74,13 @@ function App() {
                       <td className="px-6 py-4">{item.name}</td>
                       <td className="px-6 py-4">{item.price}</td>
                       <td className="px-6 py-4">
-                        <button
-                          type="button"
-                          onClick={() => alert("แก้ไข")}
+                        <NavLink
+                          to={`/edit/${item.id}`}
                           className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                          end
                         >
                           แก้ไข
-                        </button>
+                        </NavLink>
                         <button
                           type="button"
                           onClick={() => alert("ลบ")}
