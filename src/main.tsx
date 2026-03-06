@@ -3,12 +3,14 @@ import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Create from "./Create.tsx";
+import Edit from "./Edit.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/add" element={<Create />} />
+      <Route path="/edit/:id" element={<Edit />} />
     </Routes>
   </BrowserRouter>,
 );
