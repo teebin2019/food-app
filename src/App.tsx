@@ -5,6 +5,7 @@ interface Food {
   id: number;
   name: string;
   price: string;
+  is_sell: boolean;
 }
 
 function App() {
@@ -19,6 +20,20 @@ function App() {
       console.error(error);
     }
   }
+
+  const handleDelete = async (userID: number) => {
+    try {
+      const response = await fetch("/api/foods/" + userID, {
+        method: "DELETE",
+        redirect: "follow",
+      });
+      const result = await response.json();
+      console.log(result);
+      fetchData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     fetchData();
@@ -55,6 +70,9 @@ function App() {
                       ราคา
                     </th>
                     <th scope="col" className="px-6 py-3">
+                      การเผยแพร่
+                    </th>
+                    <th scope="col" className="px-6 py-3">
                       ดำเนินการ
                     </th>
                   </tr>
@@ -74,6 +92,17 @@ function App() {
                       <td className="px-6 py-4">{item.name}</td>
                       <td className="px-6 py-4">{item.price}</td>
                       <td className="px-6 py-4">
+                        <span
+                          className={`${
+                            item.is_sell
+                              ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
+                              : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300"
+                          }  text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm `}
+                        >
+                          {item.is_sell ? "เผยแพร่" : "ไม่เผยแพร่"}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
                         <NavLink
                           to={`/edit/${item.id}`}
                           className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -83,7 +112,7 @@ function App() {
                         </NavLink>
                         <button
                           type="button"
-                          onClick={() => alert("ลบ")}
+                          onClick={() => handleDelete(item.id)}
                           className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                         >
                           ลบ

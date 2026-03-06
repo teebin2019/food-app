@@ -38,7 +38,7 @@ function Create() {
             <form className="max-w-full mx-auto" onSubmit={submit}>
               <div className="mb-5">
                 <label
-                  htmlFor="text"
+                  htmlFor="name"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   ชื่ออาหาร
